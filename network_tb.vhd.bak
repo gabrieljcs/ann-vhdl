@@ -14,7 +14,7 @@ architecture tb of network_tb is
 	signal clk      : std_logic := '0';
 	signal rst      : std_logic;
 	signal input_i  : std_logic_bus_array(inputs - 1 downto 0);
-	signal start_i  : std_logic := '0';
+	signal start_i  : std_logic;
 	signal output_o : std_logic_bus;
 	signal done_o   : std_logic;
 

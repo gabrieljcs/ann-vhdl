@@ -12,7 +12,7 @@ entity neuron is
 		rst      : in  std_logic;
 		start_i  : in  std_logic;
 		input_i  : in  std_logic_bus_array(inputs - 1 downto 0);
-		weight_i : in  std_logic_bus_array(inputs downto 0); -- weight(0) is bias!
+		weight   : in  std_logic_bus_array(inputs downto 0); -- weight(0) is bias!
 		done_o   : out std_logic;
 		output_o : out std_logic_bus
 	);
@@ -31,15 +31,10 @@ architecture threshold of neuron is
 	signal mult_s                    : std_logic_vector(width * 2 - 1 downto 0);
 	signal n                         : std_logic_bus := std_logic_vector(to_unsigned(inputs - 1, std_logic_bus'length));
 begin
-
 	fsm_lower : process(clk, rst) is
 	begin
 		if rst = '1' then
 			current_state <= idle;
-			output_o      <= (others => '0');
-			done_o        <= '0';
-			input_s       <= input_i;
-			weight_s      <= weight_i;
 		else
 			current_state <= next_state;
 		end if;
@@ -66,7 +61,7 @@ begin
 				mult_s <= std_logic_vector(signed(input_s(to_integer(unsigned(n)))) * signed(weight_s(to_integer(unsigned(n)))));
 				sum_s  <= std_logic_vector(signed(sum_s) + signed(mult_s));
 
-				if n = x"ff" then
+				if n = x"255" then
 					next_state <= act_func;
 				else
 					next_state <= current_state;
@@ -85,5 +80,7 @@ begin
 		end case;
 
 	end process fsm_upper;
+
+	weight_s <= weight;
 
 end architecture threshold;
