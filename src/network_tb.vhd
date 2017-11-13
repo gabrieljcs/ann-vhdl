@@ -6,7 +6,7 @@ use work.types.all;
 entity network_tb is
 end entity network_tb;
 
-architecture tb of network_tb is
+architecture n_xor of network_tb is
 	
 	constant inputs : integer := 2;
 	constant half_period : time := 10 ns;
@@ -38,4 +38,4 @@ begin
 		input_i <= ((x"00"), (x"01"));
 		start_i <= '0', '1' after 15 ns, '0' after 30 ns;
 		
-end architecture tb;
+end architecture n_xor;
