@@ -7,7 +7,7 @@
 ;   
 
 [Library]
-others = /home/gabriel/ann-vhdl/src/modelsim.ini
+others = $MODEL_TECH/../modelsim.ini
 ;
 ; VITAL concerns:
 ;
@@ -46,6 +46,8 @@ others = /home/gabriel/ann-vhdl/src/modelsim.ini
 
 
 work = work
+floatfixlib = ieee_proposed
+ieee_proposed = floatfixlib
 [DefineOptionset]
 ; Define optionset entries for the various compilers, vmake, and vsim.
 ; These option sets can be used with the "-optionset <optionsetname>" syntax.
@@ -69,7 +71,7 @@ VOPTDEBUG = +acc -debugdb
 ; Value of 1 or 1993 for VHDL-1993.
 ; Default or value of 2 or 2002 for VHDL-2002.
 ; Value of 3 or 2008 for VHDL-2008
-VHDL93 = 2002
+VHDL93 = 2008
 
 ; Ignore VHDL-2008 declaration of REAL_VECTOR in package STANDARD. Default is off.
 ; ignoreStandardRealVector = 1
@@ -322,6 +324,27 @@ Explicit = 1
 ; Default is to to generate debugging database for all design-units.
 ; SmartDbgSym = 1
 
+NoDebug = 0
+CheckSynthesis = 0
+NoVitalCheck = 0
+Optimize_1164 = 1
+NoVital = 0
+Quiet = 0
+Show_source = 0
+DisableOpt = 0
+ZeroIn = 0
+CoverageNoSub = 0
+NoCoverage = 1
+CoverCells = 0
+CoverExcludeDefault = 0
+CoverFEC = 1
+CoverShortCircuit = 1
+CoverOpt = 3
+Show_Warning1 = 1
+Show_Warning2 = 1
+Show_Warning3 = 1
+Show_Warning4 = 1
+Show_Warning5 = 1
 [vlog]
 ; Turn off inclusion of debugging info within design units.
 ; Default is to include debugging info.
@@ -588,6 +611,23 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; Default is to to generate debugging database for all design-units.
 ; SmartDbgSym = 1
 
+vlog95compat = 0
+Vlog01Compat = 0
+Svlog = 0
+CoverCells = 0
+CoverExcludeDefault = 0
+CoverFEC = 1
+CoverShortCircuit = 1
+CoverOpt = 3
+OptionFile = /home/gabriel/ann-vhdl/src/vlog.opt
+Quiet = 0
+Show_source = 0
+Protect = 0
+NoDebug = 0
+Hazard = 0
+UpCase = 0
+DisableOpt = 0
+ZeroIn = 0
 [sccom]
 ; Enable use of SCV include files and library.  Default is off.
 ; UseScv = 1
@@ -608,6 +648,10 @@ LibrarySearchPath = mtiAvm mtiOvm mtiUvm mtiUPF
 ; Enable use of SC_MS include files and library.  Default is off.
 ; UseScMs = 1
 
+UseScv = 0
+UseScMs = 0
+CppOptions =   
+SccomVerbose = 0
 [vopt]
 ; Turn on code coverage in vopt.  Default is off. 
 ; Coverage = sbceft
@@ -702,7 +746,7 @@ Resolution = ns
 UserTimeUnit = default
 
 ; Default run length
-RunLength = 100 ns
+RunLength = 100
 
 ; Maximum iterations that can be run without advancing simulation time
 IterationLimit = 5000
@@ -1839,19 +1883,25 @@ suppress = 8780 ;an explanation can be had by running: verror 8780
 Project_Version = 6
 Project_DefaultLib = work
 Project_SortMethod = unused
-Project_Files_Count = 6
+Project_Files_Count = 9
 Project_File_0 = /home/gabriel/ann-vhdl/src/network.vhd
-Project_File_P_0 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510071738 vhdl_disableopt 0 vhdl_vital 0 cover_excludedefault 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 2 cover_nosub 0 dont_compile 0 vhdl_use93 2002
+Project_File_P_0 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 1510071738 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 4 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
 Project_File_1 = /home/gabriel/ann-vhdl/src/neuron.vhd
-Project_File_P_1 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510330999 vhdl_disableopt 0 vhdl_vital 0 cover_excludedefault 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 4 cover_nosub 0 dont_compile 0 vhdl_use93 2002
+Project_File_P_1 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 1510568015 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 6 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
 Project_File_2 = /home/gabriel/ann-vhdl/src/network_tb.vhd
-Project_File_P_2 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510333705 vhdl_disableopt 0 vhdl_vital 0 cover_excludedefault 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 3 cover_nosub 0 dont_compile 0 vhdl_use93 2002
+Project_File_P_2 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 1510333705 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 5 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
 Project_File_3 = /home/gabriel/ann-vhdl/src/act_func.vhd
-Project_File_P_3 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510186444 vhdl_disableopt 0 cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_0InOptions {} cover_covercells 0 vhdl_warn3 1 vhdl_options {} cover_optlevel 3 voptflow 1 vhdl_warn4 1 ood 1 toggle - vhdl_warn5 1 compile_to work cover_noshort 0 compile_order 0 dont_compile 0 cover_nosub 0 vhdl_use93 2002
-Project_File_4 = /home/gabriel/ann-vhdl/src/act_func_tb.vhd
-Project_File_P_4 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510186766 vhdl_disableopt 0 cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_0InOptions {} cover_covercells 0 vhdl_warn3 1 vhdl_options {} cover_optlevel 3 voptflow 1 vhdl_warn4 1 ood 1 toggle - vhdl_warn5 1 compile_to work cover_noshort 0 compile_order 1 dont_compile 0 cover_nosub 0 vhdl_use93 2002
-Project_File_5 = /home/gabriel/ann-vhdl/src/types.vhd
-Project_File_P_5 = vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510164059 vhdl_disableopt 0 vhdl_vital 0 cover_excludedefault 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 5 cover_nosub 0 dont_compile 0 vhdl_use93 2002
+Project_File_P_3 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 0 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 1 cover_noshort 0 compile_to work compile_order 0 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
+Project_File_4 = /home/gabriel/ann-vhdl/src/neuron_tb.vhd
+Project_File_P_4 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 1510567691 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 0 cover_noshort 0 compile_to work compile_order 7 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
+Project_File_5 = /home/gabriel/ann-vhdl/src/interpolador_funcao_tanh.vhd
+Project_File_P_5 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 0 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 1 cover_noshort 0 compile_to work compile_order 2 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
+Project_File_6 = /home/gabriel/ann-vhdl/src/act_func_tb.vhd
+Project_File_P_6 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 0 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 1 cover_noshort 0 compile_to work compile_order 1 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
+Project_File_7 = /home/gabriel/ann-vhdl/src/types.vhd
+Project_File_P_7 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 folder {Top Level} last_compile 1510598013 vhdl_disableopt 0 cover_fsm 0 cover_branch 0 vhdl_vital 0 cover_excludedefault 0 vhdl_warn1 1 vhdl_showsource 0 vhdl_explicit 1 vhdl_warn2 1 vhdl_0InOptions {} cover_covercells 0 vhdl_warn3 1 vhdl_options {} cover_optlevel 3 voptflow 1 vhdl_warn4 1 ood 1 toggle - vhdl_warn5 1 compile_to work cover_noshort 0 compile_order 8 dont_compile 0 cover_nosub 0 cover_expr 0 vhdl_use93 2008 cover_stmt 0
+Project_File_8 = /home/gabriel/ann-vhdl/src/interpolador_funcao_tanh_tb.vhd
+Project_File_P_8 = cover_toggle 0 vhdl_novitalcheck 0 file_type vhdl group_id 0 cover_exttoggle 0 cover_nofec 0 vhdl_nodebug 0 vhdl_1164 1 cover_cond 0 vhdl_noload 0 vhdl_synth 0 vhdl_enable0In 0 cover_branch 0 cover_fsm 0 vhdl_disableopt 0 last_compile 0 folder {Top Level} cover_excludedefault 0 vhdl_vital 0 vhdl_warn1 1 vhdl_warn2 1 vhdl_explicit 1 vhdl_showsource 0 vhdl_warn3 1 cover_covercells 0 vhdl_0InOptions {} vhdl_warn4 1 voptflow 1 cover_optlevel 3 vhdl_options {} vhdl_warn5 1 toggle - ood 1 cover_noshort 0 compile_to work compile_order 3 cover_expr 0 cover_nosub 0 dont_compile 0 cover_stmt 0 vhdl_use93 2008
 Project_Sim_Count = 0
 Project_Folder_Count = 0
 Echo_Compile_Output = 0

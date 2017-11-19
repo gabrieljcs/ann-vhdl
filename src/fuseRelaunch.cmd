@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/gabriel/ann-vhdl/src/neuron_tb_isim_beh.exe" -prj "/home/gabriel/ann-vhdl/src/neuron_tb_beh.prj" "work.neuron_tb" 

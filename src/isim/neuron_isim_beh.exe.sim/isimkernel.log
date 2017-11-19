@@ -1,0 +1,29 @@
+Command line:
+   neuron_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  40533
+
+Sat Nov 18 12:05:37 2017
+
+
+ Elaboration Time: 0.57 sec
+
+ Current Memory Usage: 208.826 Meg
+
+ Total Signals          : 27
+ Total Nets             : 684
+ Total Signal Drivers   : 16
+ Total Blocks           : 9
+ Total Primitive Blocks : 8
+ Total Processes        : 8
+ Total Traceable Variables  : 59
+ Total Scalar Nets and Variables : 1901
+Total Line Count : 39
+
+ Total Simulation Time: 0.65 sec
+
+ Current Memory Usage: 284.328 Meg
+
+Sat Nov 18 12:07:02 2017
+

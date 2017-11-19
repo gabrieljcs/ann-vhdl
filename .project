@@ -37,6 +37,11 @@
 			<locationURI>sigasiresource:/vhdl/2008/STD</locationURI>
 		</link>
 		<link>
+			<name>Common Libraries/ieee_proposed</name>
+			<type>2</type>
+			<location>/home/gabriel/.Xilinx/14.7/ISE_DS/ISE/vhdl/src/ieee_proposed</location>
+		</link>
+		<link>
 			<name>Common Libraries/IEEE/Synopsys</name>
 			<type>2</type>
 			<locationURI>sigasiresource:/vhdl/2008/IEEE%20Synopsys</locationURI>

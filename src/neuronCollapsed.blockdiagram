@@ -1,0 +1,4 @@
+diagram not mapped.neuron.behavioral {
+	def wire group architectureTofsm_upperBus (input_i, start_i)
+	def wire group fsm_lowerTofsm_upperBus (current_state, next_state)
+}

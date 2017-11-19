@@ -1,89 +1,94 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+library ieee_proposed;
+use ieee_proposed.fixed_pkg.all;
 use work.types.all;
 
 entity neuron is
 	generic(
 		inputs : integer := 3           -- Number of inputs into the neuron
+
 	);
 	port(
 		clk      : in  std_logic;
 		rst      : in  std_logic;
 		start_i  : in  std_logic;
-		input_i  : in  std_logic_bus_array(inputs - 1 downto 0);
-		weight_i : in  std_logic_bus_array(inputs downto 0); -- weight(0) is bias!
-		done_o   : out std_logic;
-		output_o : out std_logic_bus
+		input_i  : in  sfixed_bus_array(inputs - 1 downto 0);
+		weight_i : in  sfixed_bus_array(inputs downto 0); -- bias included here
+		output_o : out sfixed_bus;
+		done_o   : out std_logic
 	);
 end entity neuron;
 
 architecture behavioral of neuron is
-	type state is (idle, reg_inputs, n_sum, weight_mult, act_func);
+	type state is (idle, reg_inputs, mult, sum, act_func);
 	signal current_state, next_state : state;
-	signal input_s                   : std_logic_bus_array(inputs - 1 downto 0);
-	signal weight_s                  : std_logic_bus_array(inputs downto 0);
-	signal sum_s                     : std_logic_vector(width * 2 - 1 downto 0);
-	signal mult_s                    : std_logic_vector(width * 2 - 1 downto 0);
-	signal n                         : std_logic_bus := std_logic_vector(to_unsigned(inputs - 1, std_logic_bus'length));
-	signal start_act_func_s          : std_logic     := '0';
-	signal done_s                    : std_logic     := '0';
-	signal output_s                  : std_logic_bus := x"00";
+
+	signal done_s         : std_logic                             := '0';
+	signal input_s        : sfixed_bus_array(inputs - 1 downto 0) := (others => (others => '0'));
+	signal sum_s          : sfixed(int downto -frac) := (others => '0');
+	signal mult_s         : sfixed(int*2 - 1 downto -frac*2)      := (others => '0');
+	signal index          : integer                               := inputs;
+	signal act_func_start : std_logic                             := '0';
+	signal output_s       : sfixed_bus                            := (others => '0');
+	signal weight_s       : sfixed_bus_array(inputs downto 0);
+	signal act_func_input : sfixed_bus;
+	signal act_func_done  : std_logic;
 begin
 
 	fsm_lower : process(clk, rst) is
 	begin
 		if rst = '1' then
-			current_state    <= idle;
-			output_s         <= (others => '0');
-			done_s           <= '0';
-			start_act_func_s <= '0';
-		else
+			current_state <= idle;
+			done_s        <= '0';
+		elsif rising_edge(clk) then
 			current_state <= next_state;
 		end if;
 	end process fsm_lower;
 
-	fsm_upper : process(current_state, input_i, input_s, mult_s, n, start_i, sum_s, weight_s, done_s) is
+	fsm_upper : process(current_state, input_i, input_s, start_i, act_func_done, weight_s) is -- do NOT include "index" here
 	begin
 		case current_state is
 			when idle =>
 				if start_i = '1' then
 					next_state <= reg_inputs;
+					done_s     <= '0';
 				else
 					next_state <= current_state;
 				end if;
 
 			when reg_inputs =>
 				input_s <= input_i;
-				sum_s   <= x"00" & weight_s(0); -- bias is already added to sum
+				sum_s   <= resize(weight_s(inputs), int, -frac); -- bias is already added to sum
 
-				next_state <= n_sum;
+				next_state <= mult;
 
-			when n_sum =>
-				n <= std_logic_vector(unsigned(n) - 1);
-
-				next_state <= weight_mult;
-
-			when weight_mult =>
-				mult_s <= std_logic_vector(signed(input_s(to_integer(unsigned(n)))) * signed(weight_s(to_integer(unsigned(n)))));
-				sum_s  <= std_logic_vector(signed(sum_s) + signed(mult_s));
-
-				if n = x"FF" then
+			when mult =>
+				if index = 0 then
 					next_state <= act_func;
 				else
-					next_state <= n_sum;
+					mult_s     <= input_s(index - 1)*input_s(index - 1);
+					next_state <= sum;
 				end if;
 
-			when act_func =>
-				start_act_func_s <= '1';
+			when sum =>
+				index      <= index - 1;
+				sum_s      <= resize(sum_s, int - 1, -frac) + resize(mult_s, int - 1, -frac);
+				next_state <= mult;
 
-				if done_s = '1' then
+			when act_func =>
+				act_func_start <= '1';
+
+				if act_func_done = '1' then
 					next_state <= idle;
+					done_s     <= '1';
 				else
 					next_state <= current_state;
 				end if;
 
 		end case;
+
 	end process fsm_upper;
 
 	-- Activation function instantiation
@@ -91,14 +96,15 @@ begin
 		port map(
 			clk      => clk,
 			rst      => rst,
-			start_i  => start_act_func_s,
-			input_i  => sum_s(width - 1 downto 0),
+			start_i  => act_func_start,
+			input_i  => act_func_input,
 			output_o => output_s,
-			done_o   => done_s
+			done_o   => act_func_done
 		);
 
-	weight_s <= weight_i;
-	done_o   <= done_s;
-	output_o <= output_s;
+	weight_s       <= weight_i;
+	done_o         <= done_s;
+	output_o       <= output_s;
+	act_func_input <= resize(sum_s, int - 1, -frac);
 
 end architecture behavioral;
