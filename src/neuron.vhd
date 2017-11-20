@@ -16,8 +16,8 @@ entity neuron is
 		start_i  : in  std_logic;
 		input_i  : in  sfixed_bus_array(inputs - 1 downto 0);
 		weight_i : in  sfixed_bus_array(inputs downto 0); -- bias included here
-		output_o : out sfixed_bus;
-		done_o   : out std_logic
+		output_o : out sfixed_bus := (others => '0');
+		done_o   : out std_logic  := '0'
 	);
 end entity neuron;
 
@@ -25,29 +25,26 @@ architecture behavioral of neuron is
 	type state is (idle, reg_inputs, mult, sum, act_func);
 	signal current_state, next_state : state;
 
-	signal done_s         : std_logic                             := '0';
 	signal input_s        : sfixed_bus_array(inputs - 1 downto 0) := (others => (others => '0'));
-	signal sum_s          : sfixed(int downto -frac) := (others => '0');
-	signal mult_s         : sfixed(int*2 - 1 downto -frac*2)      := (others => '0');
+	signal sum_s          : sfixed(int downto -frac)              := (others => '0');
+	signal mult_s         : sfixed(2*int - 1 downto -2*frac)      := (others => '0');
 	signal index          : integer                               := inputs;
-	signal act_func_start : std_logic                             := '0';
-	signal output_s       : sfixed_bus                            := (others => '0');
 	signal weight_s       : sfixed_bus_array(inputs downto 0);
-	signal act_func_input : sfixed_bus;
-	signal act_func_done  : std_logic;
+	signal output_s       : sfixed_bus                            := (others => '0');
+	signal act_func_input : sfixed_bus                            := resize(sum_s, int - 1, -frac);
+	signal done_s         : std_logic                             := '0';
 begin
 
 	fsm_lower : process(clk, rst) is
 	begin
 		if rst = '1' then
 			current_state <= idle;
-			done_s        <= '0';
 		elsif rising_edge(clk) then
 			current_state <= next_state;
 		end if;
 	end process fsm_lower;
 
-	fsm_upper : process(current_state, input_i, input_s, start_i, act_func_done, weight_s) is -- do NOT include "index" here
+	fsm_upper : process(current_state, input_i, input_s, start_i, weight_s) is -- do NOT include "index", "sum_s" or "mult_s" here
 	begin
 		case current_state is
 			when idle =>
@@ -61,6 +58,8 @@ begin
 			when reg_inputs =>
 				input_s <= input_i;
 				sum_s   <= resize(weight_s(inputs), int, -frac); -- bias is already added to sum
+				mult_s  <= (others => '0');
+				index   <= inputs;
 
 				next_state <= mult;
 
@@ -68,7 +67,7 @@ begin
 				if index = 0 then
 					next_state <= act_func;
 				else
-					mult_s     <= input_s(index - 1)*input_s(index - 1);
+					mult_s     <= input_s(index - 1)*weight_s(index - 1);
 					next_state <= sum;
 				end if;
 
@@ -78,14 +77,8 @@ begin
 				next_state <= mult;
 
 			when act_func =>
-				act_func_start <= '1';
-
-				if act_func_done = '1' then
-					next_state <= idle;
-					done_s     <= '1';
-				else
-					next_state <= current_state;
-				end if;
+				done_s     <= '1';
+				next_state <= idle;
 
 		end case;
 
@@ -94,17 +87,13 @@ begin
 	-- Activation function instantiation
 	act_func_inst : entity work.act_func(threshold)
 		port map(
-			clk      => clk,
-			rst      => rst,
-			start_i  => act_func_start,
 			input_i  => act_func_input,
-			output_o => output_s,
-			done_o   => act_func_done
+			output_o => output_s
 		);
 
-	weight_s       <= weight_i;
 	done_o         <= done_s;
 	output_o       <= output_s;
+	weight_s       <= weight_i;
 	act_func_input <= resize(sum_s, int - 1, -frac);
 
 end architecture behavioral;

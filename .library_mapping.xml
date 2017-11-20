@@ -6,6 +6,8 @@
   <Mappings Location="Common Libraries" Library="not mapped"/>
   <Mappings Location="src/interpolador_funcao_tanh.vhd" Library="not mapped"/>
   <Mappings Location="src/interpolador_funcao_tanh_tb.vhd" Library="not mapped"/>
+  <Mappings Location="src/test.vhd" Library="not mapped"/>
+  <Mappings Location="src/test_tb.vhd" Library="not mapped"/>
   <Mappings Location="Common Libraries/STD" Library="std"/>
   <Mappings Location="" Library="work"/>
 </com.sigasi.hdt.shared.librarymapping.model:LibraryMappings>
