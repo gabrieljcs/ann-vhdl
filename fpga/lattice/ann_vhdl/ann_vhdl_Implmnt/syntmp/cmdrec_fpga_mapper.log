@@ -1,0 +1,14 @@
+/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/bin/m_generic  -prodtype  synplify_pro  -encrypt  -pro  -rundir  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt   -part iCE40HX1K  -package TQ144    -maxfan 10000 -RWCheckOnRam 0 -pipe -fixgatedclocks 1 -fixgeneratedclocks 1 -summaryfile /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synlog/report/ann_vhdl_fpga_mapper.xml  -flow mapping  -multisrs  -oedif  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.edf   -autoconstraint  -freq 1,000   /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_prem.srd  -sap  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.sap  -otap  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.tap  -omap  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.map  -devicelib  /home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/generic/sb_ice40.v  -sap  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.sap  -ologparam  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/syntmp/ann_vhdl.plg  -osyn  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.srm  -prjdir  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/  -prjname  ann_vhdl_syn  -log  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synlog/ann_vhdl_fpga_mapper.srr 
+rc:1 success:1 runtime:110
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.edf|io:o|time:1513092108|size:6464125|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_prem.srd|io:i|time:1513091998|size:52779|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.sap|io:o|time:1513091999|size:3586|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.tap|io:o|time:0|size:0|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.map|io:o|time:1513092109|size:27|exec:0
+file:/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/generic/sb_ice40.v|io:i|time:1513077232|size:220434|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.sap|io:o|time:1513091999|size:3586|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/syntmp/ann_vhdl.plg|io:o|time:1513092109|size:462|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.srm|io:o|time:1513092109|size:16374|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synlog/ann_vhdl_fpga_mapper.srr|io:o|time:1513092109|size:460484|exec:0
+file:/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/linux_a_64/m_generic|io:i|time:1513077245|size:32925640|exec:1
+file:/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/bin/m_generic|io:i|time:1513077230|size:345|exec:1

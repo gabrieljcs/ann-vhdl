@@ -1,22 +1,33 @@
+--------------------------------------------------------------------------------
+--! @file
+--! @brief Neural network instantiation
+--! @author Gabriel de Jesus Coelho da Silva
+--------------------------------------------------------------------------------
+
+--! Use standard library with logic elements
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+
+--! Use proposed library with fixed point definition
 library ieee_proposed;
 use ieee_proposed.fixed_pkg.all;
+
+--! Use custom library for ease of use
 use work.types.all;
 
 entity network is
 	generic(
-		inputs  : integer := 2;         -- Network inputs
-		outputs : integer := 1          -- Network outputs
+		inputs  : integer := 2;         --! Network inputs
+		outputs : integer := 1          --! Network outputs
 	);
 	port(
-		clk      : in  std_logic;
-		rst      : in  std_logic;
-		start_i  : in  std_logic;
-		input_i  : in  sfixed_bus_array(inputs - 1 downto 0);
-		output_o : out sfixed_bus_array(outputs - 1 downto 0) := (others => (others => '0'));
-		done_o   : out std_logic                              := '0'
+		clk      : in  std_logic;	--! Clock input
+		rst      : in  std_logic;	--! Reset output
+		start_i  : in  std_logic;	--! Start input, indicates to start the calculation
+		input_i  : in  sfixed_bus_array(inputs - 1 downto 0); --! Network input
+		output_o : out sfixed_bus_array(outputs - 1 downto 0) := (others => (others => '0')); --! Network output
+		done_o   : out std_logic                              := '0' --! Done output, indicates completion
 	);
 end entity network;
 
@@ -28,15 +39,15 @@ architecture n_xor of network is
 	signal start_n3  : std_logic;
 	signal output_s  : sfixed_bus_array(outputs - 1 downto 0);
 	signal input_n3  : sfixed_bus_array(inputs - 1 downto 0);
-	signal weight_n1 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-1.5) ),
-	                                                         ( to_sfixed_a(1) ),
-	                                                         ( to_sfixed_a(1) ));
-	signal weight_n2 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-0.5) ),
-	                                                         ( to_sfixed_a(1) ),
-	                                                         ( to_sfixed_a(1) ));
-	signal weight_n3 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-0.5) ),
-	                                                         ( to_sfixed_a(-2) ),
-	                                                         ( to_sfixed_a(1) ));
+	constant weight_n1 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-1.5) ),
+	                                                           ( to_sfixed_a(1) ),
+	                                                           ( to_sfixed_a(1) ));
+	constant weight_n2 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-0.5) ),
+	                                                           ( to_sfixed_a(1) ),
+	                                                           ( to_sfixed_a(1) ));
+	constant weight_n3 : sfixed_bus_array(inputs downto 0) := (( to_sfixed_a(-0.5) ),
+	                                                           ( to_sfixed_a(-2) ),
+	                                                           ( to_sfixed_a(1) ));
 begin
 
 	-- First layer

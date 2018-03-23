@@ -1,0 +1,68 @@
+Running in Lattice mode
+
+Starting:    /home/gabriel/.lscc/iCEcube2.2017.08/synpbase/linux_a_64/mbin/synplify
+Install:     /home/gabriel/.lscc/iCEcube2.2017.08/synpbase
+Hostname:    cygnus
+Date:        Tue Dec 12 13:18:26 2017
+Version:     L-2016.09L+ice40
+
+Arguments:   -product synplify_pro ann_vhdl_syn.prj
+ProductType: synplify_pro
+
+
+
+
+auto_infer_blackbox is not supported in current product.
+New HDL Analyst: enabled
+log file: "/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.srr"
+Running: ann_vhdl_Implmnt in foreground
+
+Running ann_vhdl_syn|ann_vhdl_Implmnt
+
+Running: compile (Compile) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:57 2017
+
+Running: compile_flow (Compile Process) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:57 2017
+
+Running: compiler (Compile Input) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:57 2017
+
+compiler completed
+# Tue Dec 12 13:19:57 2017
+
+Return Code: 0
+Run Time:00h:00m:00s
+
+Running: multi_srs_gen (Multi-srs Generator) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:57 2017
+Up-To-Date: multi_srs_gen. No run necessary
+Complete: Compile Process on ann_vhdl_syn|ann_vhdl_Implmnt
+
+Running: premap (Pre-mapping) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:58 2017
+
+premap completed with warnings
+# Tue Dec 12 13:19:59 2017
+
+Return Code: 1
+Run Time:00h:00m:01s
+Complete: Compile on ann_vhdl_syn|ann_vhdl_Implmnt
+
+Running: map (Map) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:59 2017
+
+Running: fpga_mapper (Map & Optimize) on ann_vhdl_syn|ann_vhdl_Implmnt
+# Tue Dec 12 13:19:59 2017
+Copied /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_m.srm to /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/ann_vhdl.srm
+
+fpga_mapper completed with warnings
+# Tue Dec 12 13:21:49 2017
+
+Return Code: 1
+Run Time:00h:01m:50s
+Complete: Map on ann_vhdl_syn|ann_vhdl_Implmnt
+Complete: Logic Synthesis on ann_vhdl_syn|ann_vhdl_Implmnt
+
+================================Application terminated by Ctrl-C
+

@@ -1,0 +1,1 @@
+@W: MT529 :"/home/gabriel/ann-vhdl/src/lattice-test/neuron.vhd":40:2:40:3|Found inferred clock network|clk which controls 15 sequential elements including n1.current_state[0:4]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 

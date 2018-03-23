@@ -1,0 +1,10 @@
+Command line:
+   network_test_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  58973
+
+Fri Mar 23 14:18:55 2018
+
+
+ Elaboration Time: 0.04 sec

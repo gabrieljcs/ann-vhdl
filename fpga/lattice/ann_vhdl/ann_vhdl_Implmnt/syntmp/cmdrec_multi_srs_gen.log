@@ -1,0 +1,7 @@
+/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/bin/syn_nfilter  -link  -multisrs  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_comp.srs  -osyn  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_mult.srs  -log  /home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synlog/ann_vhdl_multi_srs_gen.srr 
+rc:0 success:1 runtime:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_comp.srs|io:i|time:1513091519|size:13141|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_mult.srs|io:o|time:1513091520|size:3212|exec:0
+file:/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synlog/ann_vhdl_multi_srs_gen.srr|io:o|time:1513091520|size:668|exec:0
+file:/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/linux_a_64/syn_nfilter|io:i|time:1513077249|size:11473624|exec:1
+file:/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/bin/syn_nfilter|io:i|time:1513077230|size:366|exec:1

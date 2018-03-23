@@ -1,0 +1,3 @@
+network port input_i_0[15:-16] input_i[31:0]
+network port input_i_1[15:-16] input_i[63:32]
+network port output_o_0[15:-16] output_o[31:0]
