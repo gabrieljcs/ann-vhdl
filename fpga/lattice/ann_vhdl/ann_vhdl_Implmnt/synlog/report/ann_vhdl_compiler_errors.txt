@@ -1,3 +1,0 @@
-@E: Can't open input file /home/gabriel/ann-vhdl/src/network_fpga.vhd
-@E::VHDL compiler failed
-

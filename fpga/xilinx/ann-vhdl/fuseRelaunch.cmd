@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "secureip" -o "/home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/network_test_tb_isim_beh.exe" -prj "/home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/network_test_tb_beh.prj" "work.network_test_tb" 
