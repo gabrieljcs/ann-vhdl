@@ -22,8 +22,10 @@ use work.types.all;
 --! the activation function specified as the instantiated architecture.
 entity act_func is
 	port(
-		input_i  : in  sfixed_bus;						--! Activation function input
-		output_o : out sfixed_bus := (others => '0')	--! Activation function output
+		clk      : in  std_logic;  --! Clock, for synchronous implementation
+		input_i  : in  sfixed_bus; --! Activation function input
+		output_o : out sfixed_bus := (others => '0') --! Activation function
+		                                             --! output
 	);
 end entity act_func;
 
@@ -34,11 +36,18 @@ begin
 	output_o <= to_sfixed_a(1) when input_i >= 0 else to_sfixed_a(0);
 end architecture threshold;
 
+-- @brief Rectified Linear Unit (ReLU)
+-- @details A simple ReLU (f(x) = max(0, x))
+architecture relu of act_func is
+begin
+	output_o <= input_i when input_i >= 0 else to_sfixed_a(0);
+end architecture relu;
+
 -- @brief Tanh
 -- @details Linearly interpolated hyperbolic tangent (tanh).
 -- @author Giovani Baratto <Giovani.Baratto@gmail.com.br>
 architecture tanh of act_func is
-	constant a    : sfixed_bus_array(0 to 31) := ( -- angular coefficients
+	constant a : sfixed_bus_array(0 to 31) := ( -- angular coefficients
 		0  => to_sfixed_a(0.979675),    1 => to_sfixed_a(0.868794),
 		2  => to_sfixed_a(0.692127),    3 => to_sfixed_a(0.505781),
 		4  => to_sfixed_a(0.346758),    5 => to_sfixed_a(0.227458),
@@ -56,7 +65,7 @@ architecture tanh of act_func is
 		28 => to_sfixed_a(0.505781),   29 => to_sfixed_a(0.692127),
 		30 => to_sfixed_a(0.868794),   31 => to_sfixed_a(0.979675));
 
-	constant b    : sfixed_bus_array(0 to 31) := ( -- linear coefficients
+	constant b : sfixed_bus_array(0 to 31) := ( -- linear coefficients
 		0  => to_sfixed_a(0),           1 => to_sfixed_a(0.0277202),
 		2  => to_sfixed_a(0.116054),    3 => to_sfixed_a(0.255813),
 		4  => to_sfixed_a(0.414836),    5 => to_sfixed_a(0.563961),
@@ -74,19 +83,27 @@ architecture tanh of act_func is
 		28 => to_sfixed_a(-0.255813),  29 => to_sfixed_a(-0.116054),
 		30 => to_sfixed_a(-0.0277202), 31 => to_sfixed_a(0)
 	);
-	signal mult_s : sfixed(2*int - 1 downto -2*frac) := (others => '0');
-	signal sum_s  : sfixed(int downto -frac)         := (others => '0');
-	signal index  : integer                          := 0;
+	signal mult_s   : sfixed(2*int - 1 downto -2*frac) := (others => '0');
+	signal sum_s    : sfixed(int downto -frac)         := (others => '0');
+	signal index    : integer                          := 0;
+	signal output_s : sfixed_bus;
 begin
 	index    <= to_integer(unsigned(input_i(2 downto -2))); -- index of a & b
 
-	mult_s   <= a(index) * input_i;     -- a[i] * input
+	mult_s   <= a(index) * input_i; -- a[i] * inputs
 
 	sum_s    <= resize(mult_s, int - 1, -frac) + b(index); -- a[i] * input + 
-														   -- b[i]
+	                                                       -- b[i]
 
-	output_o <= to_sfixed_a(1)	when input_i >  3.5 else
-				to_sfixed_a(-1) when input_i < -3.5 else
-				resize(sum_s, int - 1, -frac); -- output = a[i] * input + b[i]
+	output_s <= to_sfixed_a(1)	when input_i >  3.5 else
+	            to_sfixed_a(-1) when input_i < -3.5 else
+	            resize(sum_s, int - 1, -frac); -- output = a[i] * input + b[i]
 
+	-- for synchronous implementation
+	process(clk)
+	begin
+		if (clk'event and clk = '1') then
+			output_o <= output_s;
+		end if;
+	end process;
 end architecture tanh;

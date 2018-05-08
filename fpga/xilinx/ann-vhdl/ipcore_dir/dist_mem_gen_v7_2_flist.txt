@@ -1,0 +1,13 @@
+# Output products list for <dist_mem_gen_v7_2>
+dist_mem_gen_v7_2/dist_mem_gen_v7_2_readme.txt
+dist_mem_gen_v7_2/doc/dist_mem_gen_v7_2_vinfo.html
+dist_mem_gen_v7_2/doc/pg063-dist-mem-gen.pdf
+dist_mem_gen_v7_2.asy
+dist_mem_gen_v7_2.gise
+dist_mem_gen_v7_2.ngc
+dist_mem_gen_v7_2.vhd
+dist_mem_gen_v7_2.vho
+dist_mem_gen_v7_2.xco
+dist_mem_gen_v7_2.xise
+dist_mem_gen_v7_2_flist.txt
+dist_mem_gen_v7_2_xmdf.tcl

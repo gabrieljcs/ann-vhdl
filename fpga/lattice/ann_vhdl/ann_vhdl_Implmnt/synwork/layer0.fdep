@@ -1,0 +1,49 @@
+#defaultlanguage:vhdl
+#OPTIONS:"|-layerid|0|-orig_srs|/home/gabriel/ann-vhdl/fpga/lattice/ann_vhdl/ann_vhdl_Implmnt/synwork/ann_vhdl_comp.srs|-autotop|-prodtype|synplify_pro|-primux|-fixsmult|-infer_seqShift|-ice|-sdff_counter|-nram|-divnmod|-nostructver|-encrypt|-pro|-lite|-ui|-fid2|-ram|-sharing|on|-ll|2000|-autosm|-vhdl2008|-ignore_undefined_lib|-lib|work|-lib|work|-lib|work|-lib|work"
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/linux_a_64/c_vhdl":1513077237
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/location.map":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/std.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd/snps_haps_pkg.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/std1164.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/std_textio.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/numeric.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd/umr_capim.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/arith.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/unsigned.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd/hyperents.vhd":1513077236
+#CUR:"/home/gabriel/ann-vhdl/src/lattice-test/types.vhd":1513091213
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/fixed_pkg.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/fixed_generic_pkg.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd2008/fixed_float_types.vhd":1513077236
+#CUR:"/home/gabriel/.lscc/iCEcube2.2017.08/synpbase/lib/vhd/math_real.vhd":1513077236
+#CUR:"/home/gabriel/ann-vhdl/src/lattice-test/act_func.vhd":1513091238
+#CUR:"/home/gabriel/ann-vhdl/src/lattice-test/neuron.vhd":1513091222
+#CUR:"/home/gabriel/ann-vhdl/src/lattice-test/network.vhd":1513091358
+0 "/home/gabriel/ann-vhdl/src/lattice-test/act_func.vhd" vhdl
+1 "/home/gabriel/ann-vhdl/src/lattice-test/network.vhd" vhdl
+2 "/home/gabriel/ann-vhdl/src/lattice-test/neuron.vhd" vhdl
+3 "/home/gabriel/ann-vhdl/src/lattice-test/types.vhd" vhdl
+
+# Dependency Lists (Uses list)
+0 3 
+1 2 3 
+2 0 3 
+3 -1
+
+# Dependency Lists (Users Of)
+0 2 
+1 -1
+2 1 
+3 2 1 0 
+
+# Design Unit to File Association
+arch work act_func tanh 0
+arch work act_func threshold 0
+module work act_func 0
+arch work network n_xor 1
+module work network 1
+arch work neuron behavioral 2
+module work neuron 2
+
+
+# Configuration files used

@@ -1,0 +1,29 @@
+Running: /home/gabriel/.Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib secureip -o /home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/act_func_tb_isim_beh.exe -prj /home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/act_func_tb_beh.prj work.act_func_tb 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Parsing VHDL file "/home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/../../../src/types.vhd" into library work
+Parsing VHDL file "/home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/../../../src/act_func.vhd" into library work
+Parsing VHDL file "/home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/../../../src/act_func_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 101280 KB
+Fuse CPU Usage: 4500 ms
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package numeric_std
+Compiling package textio
+Compiling package std_logic_textio
+Compiling package fixed_float_types
+Compiling package math_real
+Compiling package fixed_pkg
+Compiling package types
+Compiling architecture tanh of entity act_func [act_func_default]
+Compiling architecture tb of entity act_func_tb
+Time Resolution for simulation is 1ps.
+Compiled 12 VHDL Units
+Built simulation executable /home/gabriel/ann-vhdl/fpga/xilinx/ann-vhdl/act_func_tb_isim_beh.exe
+Fuse Memory Usage: 699632 KB
+Fuse CPU Usage: 5040 ms
+GCC CPU Usage: 610 ms

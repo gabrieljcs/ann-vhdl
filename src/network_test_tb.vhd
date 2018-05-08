@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.math_real.all; -- tanh(x) etc
 use work.types.all;
 
 entity network_test_tb is
@@ -21,6 +22,7 @@ architecture n_test_2_4_1 of network_test_tb is
 	signal done_o   : std_logic;
 	signal input_r  : real_array(inputs - 1 downto 0);
 	signal output_r : real_array(outputs - 1 downto 0);
+	signal output_e : real_array(outputs - 1 downto 0);
 
 begin
 
@@ -63,5 +65,7 @@ begin
 		
 		input_r <= to_real(input_i);
 		output_r <= to_real(output_o);
+		
+		-- output_e <= 
 		
 end architecture n_test_2_4_1;
