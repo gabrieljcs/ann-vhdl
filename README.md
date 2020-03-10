@@ -37,3 +37,7 @@ Further work is needed to address a few issues:
 * Better documentation is needed;
 * An automated way of converting high-level code to its VHDL equivalent should be made (perhaps using ONNX as an intermediate representation);
 * More testing is needed.
+
+
+Developed by Gabriel (gabrieljcs)
+gabrieljcs [at] protonmail [dot] com
